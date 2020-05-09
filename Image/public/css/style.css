@@ -1,0 +1,12 @@
+.dummy-img{
+  width:200px;
+  height:200px;
+  background: skyblue;
+  margin-right:5px;
+  margin-top:5px;
+}
+
+.boxContainer{
+display: flex;
+flex-wrap: wrap;
+}
