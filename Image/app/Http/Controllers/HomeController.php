@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Image;
 
+use App\Http\Controllers\ImageController;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+
+        $title = 'dummy';
+        $ans = 'answer';
+        $imgController = new ImageController();
+        $images   = $imgController->image_get();
+        return view('home', ['title' => $title,'ans' => $ans,'imgs' => $images]);
     }
 }

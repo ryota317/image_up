@@ -41,7 +41,7 @@ $image->path = basename($path);
 $image->save();
 $images   = $this->image_get();
 
-return view('test' , ['success' => 'ファイルの保存に成功しました','imgs' => $images]);
+return view('/home' , ['success' => '画像のアップロードに成功しました','imgs' => $images]);
 
 
     }
