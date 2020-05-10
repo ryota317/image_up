@@ -50,5 +50,27 @@ return view('/home' , ['success' => '画像のアップロードに成功しま�
     }
 
 
+    public function image_search(Request $request){
+
+        $search_word = $request->image_search;
+      //  $image = new Image();
+
+ $images = Image::where('title',  'like', "%{$search_word}%")->get();
+
+
+
+
+
+
+ if($images->first() == NULL){
+//検索ワードで画像がヒットしなかったら
+return view('/home', ['noHit' => '画像が見つかりませんでした','hitCount' => $images->count(),'search_word' => $search_word]);
+ }else {
+//検索ワードで画像がヒットした場合
+ return view('/home' , ['imgs' => $images,'hitCount' => $images->count(),'search_word' => $search_word]);
+ }
+
+
+}
 
 }

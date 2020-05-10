@@ -41,3 +41,6 @@ Route::get('/test', function () {
  Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/image-search', 'ImageController@image_search');

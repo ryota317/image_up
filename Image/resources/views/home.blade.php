@@ -40,11 +40,20 @@
 </div>
 </div>
 <div class="search-div">
-<form class="" action="index.html" method="get">
-  画像検索:<input type="text" name="" value="" class="search-input">
+<form class="" action="{{ url('image-search') }}" method="get">
+  画像検索:<input type="text" name="image_search" value="" class="search-input">
 <input type="submit"  value="検索" class="search-button">
 </form>
 </div>
+
+@isset( $hitCount  )
+<h2>検索ワード：{{ $search_word }}</h2>
+<h2> <span>{{ $hitCount }}</span>件ヒットしました </h2>
+@endisset
+
+@isset( $noHit  )
+<h1> {{ $noHit }} </h1>
+@endisset
 
 
 
@@ -53,6 +62,7 @@
 @endisset
 
 <!-- @isset( $imgs  ) -->
+
 <div class="boxContainer">
 @foreach ($imgs as $img)
 
