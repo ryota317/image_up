@@ -55,7 +55,7 @@ return view('/home' , ['success' => '画像のアップロードに成功しま�
         $search_word = $request->image_search;
       //  $image = new Image();
 
- $images = Image::where('title',  'like', "%{$search_word}%")->get();
+ $images = Image::where('title',  'like', "%{$search_word}%")->get()->simplePaginate(15);;
 
 
 
