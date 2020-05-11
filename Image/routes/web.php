@@ -29,7 +29,7 @@ Route::get('/top', function () {
 });
 
 
- Route::post('test', 'ImageController@image_upload');
+ Route::post('/home', 'ImageController@image_upload');
 // Route::post('test', 'ImageController@image_get');
 
 Route::get('/test', function () {

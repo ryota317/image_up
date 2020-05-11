@@ -46,6 +46,16 @@
 </form>
 </div>
 
+
+
+
+@isset( $not_extension  )
+<h1> {{ $not_extension }} </h1>
+@endisset
+
+
+
+
 @isset( $hitCount  )
 <h2>検索ワード：{{ $search_word }}</h2>
 <h2> <span>{{ $hitCount }}</span>件ヒットしました </h2>
@@ -62,6 +72,7 @@
 @endisset
 
 <!-- @isset( $imgs  ) -->
+
 
 <div class="boxContainer">
 @foreach ($imgs as $img)
@@ -83,6 +94,7 @@
 </div>
 
  @endforeach
+ {{ $imgs->links() }}
 <!-- @endisset -->
 
 </div>
