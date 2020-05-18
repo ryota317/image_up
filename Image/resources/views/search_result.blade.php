@@ -58,7 +58,7 @@
 
 @isset( $hitCount  )
 <h2>検索ワード：{{ $search_word }}</h2>
-<h2> <span>{{ $hitCount }}</span>件ヒットしました </h2>
+<h2> <span>{{ $imgs->total() }}</span>件ヒットしました </h2>
 @endisset
 
 @isset( $noHit  )
@@ -95,12 +95,14 @@
 
  @endforeach
 
- {{$imgs->appends(request()->query())->links()}} 
-
 
 
 
 <!-- @endisset -->
 
 </div>
+<div >{{$imgs->appends(request()->query())->links('vendor.pagination.sample2')}} 
+</div>
+
+
 @endsection
