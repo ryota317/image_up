@@ -40,7 +40,7 @@
 </div>
 </div>
 <div class="search-div">
-<form class="" action="{{ url('image-search') }}" method="get">
+<form class="" action="{{ url('search_result') }}" method="get">
   画像検索:<input type="text" name="image_search" value="" class="search-input">
 <input type="submit"  value="検索" class="search-button">
 </form>
