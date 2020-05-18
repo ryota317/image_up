@@ -94,8 +94,12 @@
 </div>
 
  @endforeach
- 
- {{  $imgs->appends(Request::only('find'))->links() }}
+
+ {{$imgs->appends(request()->query())->links()}} 
+
+
+
+
 <!-- @endisset -->
 
 </div>

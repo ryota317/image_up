@@ -94,7 +94,7 @@ return view('/home' , ['success' => '画像のアップロードに成功しま�
         $search_word = $request->image_search;
       //  $image = new Image();
   
- $images = Image::where('title',  'like', "%{$search_word}%")->paginate(5)->withPath('/image-search');
+ $images = Image::where('title',  'like', "%{$search_word}%")->paginate(10);
 // 
 
  //データベースにデータが存在するかチェック
@@ -104,10 +104,10 @@ return view('/home' , ['success' => '画像のアップロードに成功しま�
 
  if($images->first() == NULL){
 //検索ワードで画像がヒットしなかったら
-return view('/home', ['noHit' => '画像が見つかりませんでした','hitCount' => $images->count(),'search_word' => $search_word]);
+return view('/search_result', ['noHit' => '画像が見つかりませんでした','hitCount' => $images->count(),'search_word' => $search_word]);
  }else {
 //検索ワードで画像がヒットした場合
- return view('/home' , ['imgs' => $images,'hitCount' => $images->count(),'search_word' => $search_word]);
+ return view('/search_result' , ['imgs' => $images,'hitCount' => $images->count(),'search_word' => $search_word]);
  }
 
 
