@@ -3,12 +3,13 @@
 
 // const open = document.getElementById('open');
 const close = document.getElementById('close');
-const madal = document.getElementById('modal');
+const modal = document.getElementById('modal');
 const mask = document.getElementById('mask');
 
 var p = document.createElement('p');
-console.log(modal);
-console.log(mask);
+//null todo
+// console.log(modal);
+// console.log(mask);
 
 
 window.addEventListener('load', (event) => {

@@ -2,8 +2,8 @@
 {
 
   function check(){
-
-    if(window.confirm('送信してよろしいですか？')){ // 確認ダイアログを表示
+    let result = window.confirm('送信してよろしいですか？');
+    if(result){ // 確認ダイアログを表示
   
       return true; // 「OK」時は送信を実行
   
@@ -16,7 +16,6 @@
     }
   
   }
-  
 
 
 
