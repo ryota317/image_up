@@ -17,7 +17,7 @@ class CreateImagesTable extends Migration
              $table->id();
 
             $table->string('title');
-            $table->string('contributor');
+            $table->integer('contributor')->references('id')->on('users');
             $table->string('path');
             $table->timestamps();
         });

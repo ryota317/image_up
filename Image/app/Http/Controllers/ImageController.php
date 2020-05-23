@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use Illuminate\Http\Request;
 use App\Image;
+use Illuminate\Support\Facades\DB;
 class ImageController extends Controller
 {
 
@@ -41,13 +42,17 @@ class ImageController extends Controller
     public function image_upload(Request $request){
 
 
+
     if($request->isMethod('POST')){
       //アップされた画像名
       $upload_name = $_FILES['image']['name'];
+      
       //パス情報の取得
       $info = pathinfo( $upload_name);
+     
       //拡張子が存在するかチェック
       $extensio_exist =  array_key_exists ( 'extension' , $info );
+     
       //もし拡張子が存在すれば格納 そうでなければhomeへ飛ばす
     if($extensio_exist ){
               $extensio = $info["extension"];
@@ -59,7 +64,7 @@ class ImageController extends Controller
       }
 
       //拡張子がgif,jpeg,gifであるかチェック
-      if($extensio  != ('gif' || 'jpeg' || 'gif')){
+      if($extensio  != ('gif' || 'jpeg' || 'gif' || 'JPEG')){
         $images   = $this->image_get();
         return view('/home' , ['not_extension' =>  'PNG/JPEG/GIF のみ投稿可能' ,'imgs' => $images]);
         
@@ -67,14 +72,16 @@ class ImageController extends Controller
 
 
 //画像を保存してそのパスを返す
-  $path = $request->file('image')->store('public/img');
+
+//※　画像のサイズが大きいとエラーになる TODO
+$path = $request->file('image')->store('public/img');
 // Image::create(['path' => basename($path)]);
 
 
 //画像情報の保存
 $image = new Image();
 $image->title = $request->title;
-$image->contributor = 1;
+$image->contributor = Auth::id();
 $image->path = basename($path);
 $image->save();
 $images   = $this->image_get();
@@ -109,6 +116,27 @@ return view('/search_result', ['noHit' => '画像が見つかりませんでし�
 //検索ワードで画像がヒットした場合
  return view('/search_result' , ['imgs' => $images,'hitCount' => $images->count(),'search_word' => $search_word]);
  }
+
+}
+
+
+public function image_edit(Request $request){
+  $path = $request->path;
+  
+
+
+  $image = DB::table('images')->where('path', $path)->first();
+  // $image = Image::where('path',  $path)->get();
+
+
+
+
+
+
+  //エラー処理書く??  todo
+  //
+  //
+  return view('/image-edit' , ['img' => $image]);
 
 
 }

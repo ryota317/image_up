@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
  @section('content') 
+ <script src="{{ asset('/modal/modal.js') }}"></script>
  <!--<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -22,8 +23,11 @@
 </div> -->
 
 
+
+
+
 <div class="home-header">
- <form class="" action="#" method="get">
+ <form class="" action="{{ url('/user-info') }}" method="get">
     <input type="submit" name="" value=" {{ Auth::user()->name }}" class="logout-button">
   </form>
 <div>
@@ -95,8 +99,19 @@
 
  @endforeach
  
- {{  $imgs->appends(Request::only('find'))->links() }}
+
 <!-- @endisset -->
 
 </div>
+<div>{{  $imgs->appends(Request::only('find'))->links('vendor.pagination.sample2') }}</div>
 @endsection
+<div id="mask" class="hidden">
+
+</div>
+<section id="modal" class="hidden">
+
+
+<div id="close">
+
+</div>
+</section>

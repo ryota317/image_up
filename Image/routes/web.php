@@ -44,3 +44,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/search_result', 'ImageController@image_search');
+
+Route::get('/user-info', 'UserController@get_user_info');
+
+Route::get('/image-info-edit', 'ImageController@image_edit');
+
+
