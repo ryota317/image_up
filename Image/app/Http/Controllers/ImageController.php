@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 use Auth;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use App\Image;
+use App\User;
 use Illuminate\Support\Facades\DB;
 class ImageController extends Controller
 {
@@ -136,8 +138,44 @@ public function image_edit(Request $request){
   //エラー処理書く??  todo
   //
   //
-  return view('/image-edit' , ['img' => $image]);
 
+  if(isset($request->edit)){
+    
+    return view('/image-edit' , ['img' => $image,'change_title_result'=>'タイトル名を変更しました']);
+    
+   
+  }else{
+ 
+    return view('/image-edit' , ['img' => $image]);
+  }
+    
+   
+
+
+
+}
+
+
+
+
+public function image_change_title(Request $request){
+
+$img_id = $request->img_id;
+$new_title = $request->new_title;
+$image = \App\Image::findOrFail($img_id);
+
+$image->title = $new_title;
+$image->save();
+
+// $controller = new UserController;
+// // $controller->get_user_info(); 
+
+$return_view =  $this->image_edit($request);
+
+
+return $return_view;
+
+//  return view('/user-info' , ['change_title_result' => 'タイトル変更しました']);
 
 }
 

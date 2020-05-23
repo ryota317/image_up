@@ -22,15 +22,27 @@
   }
 </script>
 </head> 
+
+
+@isset( $change_title_result  )
+<p>{{ $change_title_result }}</p>
+ @endisset
+
   <img src=" {{ asset('storage/img/' . $img->path) }}" alt=""
     width="200" height="200">
     <br>
-    {{ $img->title}}
-  <form  action="#"  method="post"  onsubmit="return check(this)">
-    <label >新しいタイトル<input type="text"></label>
+    現在のタイトル名:{{ $img->title}}
+    
+  <form  action="{{ url('/image-change-title')}}"   method="post"  onsubmit="return check(this)">
+  {{ csrf_field() }} 
+    <label >新しいタイトル名:<input type="text" name="new_title"></label>
     <input type="submit" value="変更" name="alert_check">
+    <input type="hidden" name="img_id" value="{{ $img->id }}">
+    <input type="hidden" name="path" value="{{ $img->path }}">
+    <input type="hidden" name="edit" value="edit">
   </form>
   <form action="{{ url('/home')}}"  method="post"  onsubmit="return check(this)">
+  {{ csrf_field() }} 
     <input type="submit" value="削除"  name="alert_check" >
   </form>
   <script src="{{ asset('/js/form.js') }}"></script>

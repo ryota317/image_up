@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('/image-change-title', 'ImageController@image_change_title');
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,6 +22,7 @@ Route::get('/', function () {
 Route::get('/image-upload', function () {
     return view('image-upload');
 });
+
 
 
 
@@ -48,5 +50,6 @@ Route::get('/search_result', 'ImageController@image_search');
 Route::get('/user-info', 'UserController@get_user_info');
 
 Route::get('/image-info-edit', 'ImageController@image_edit');
+
 
 
