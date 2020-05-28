@@ -23,6 +23,13 @@
   <body>
 
 
+  
+  @isset( $change_msg )
+<p> {{ $change_msg }} </p>
+@endisset
+@isset( $del_msg )
+<p> {{ $del_msg }} </p>
+@endisset
 
 
 
@@ -35,9 +42,7 @@
 {{ $user->name }}
 </div>
 <div class="user-name-change content">
-<form action="">
-
-
+<form action="{{ url('/user_name_change') }}" method="get">
 <button>ユーザ名変更</button>
 </form>
 </div>
@@ -53,9 +58,7 @@
 {{ $user->email }}
 </div>
 <div class="user-name-change content">
-<form action="">
-
-
+<form action="{{ url('/user_email_change') }}" method="get">
 <button>メールアドレス変更</button>
 </form>
 </div>
@@ -88,9 +91,9 @@
 
  <p>タイトル::　　{{ $img->title }}</p>
 @endisset
-@isset( $img->contributor )
+@isset( $user->name )
 
- 投稿者::　　{{ $img->contributor }}
+ 投稿者::　　{{ $user->name }}
 @endisset
 </div>
 
@@ -104,6 +107,9 @@
  
 <!-- @endisset -->
 
+<form action="{{ url('/home') }}" method="get">
+  <input type="submit" value="戻る">
+  </form>
 
   </body>
 </html>

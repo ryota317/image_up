@@ -41,8 +41,10 @@
     <input type="hidden" name="path" value="{{ $img->path }}">
     <input type="hidden" name="edit" value="edit">
   </form>
-  <form action="{{ url('/home')}}"  method="post"  onsubmit="return check(this)">
+  <form action="{{ url('/delete-image')}}"  method="post"  onsubmit="return check(this)">
   {{ csrf_field() }} 
+  <input type="hidden" value="{{ $img->id }}"  name="id">
+  <input type="hidden" value="del"  name="del">
     <input type="submit" value="削除"  name="alert_check" >
   </form>
   <script src="{{ asset('/js/form.js') }}"></script>

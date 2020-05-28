@@ -23,7 +23,7 @@
 
 
 <div class="home-header">
- <form class="" action="#" method="get">
+ <form class="" action="{{ url('/user-info') }}" method="get">
     <input type="submit" name="" value=" {{ Auth::user()->name }}" class="logout-button">
   </form>
 <div>
@@ -58,11 +58,7 @@
 
 @isset( $hitCount  )
 <h2>検索ワード：{{ $search_word }}</h2>
-<h2> <span>{{ $imgs->total() }}</span>件ヒットしました </h2>
-@endisset
-
-@isset( $noHit  )
-<h1> {{ $noHit }} </h1>
+<h2> <span>{{ $hitCount }}</span>件ヒットしました </h2>
 @endisset
 
 
@@ -95,14 +91,14 @@
 
  @endforeach
 
+ </div>
+<div >{{$imgs->appends(request()->query())->links('vendor.pagination.sample2')}} 
+</div>
 
 
 
 <!-- @endisset -->
 
-</div>
-<div >{{$imgs->appends(request()->query())->links('vendor.pagination.sample2')}} 
-</div>
 
 
 @endsection

@@ -91,9 +91,9 @@
 
  <p>タイトル::　　{{ $img->title }}</p>
 @endisset
-@isset( $img->contributor )
+@isset( $img->name )
 
- 投稿者::　　{{ $img->contributor }}
+ 投稿者::　　{{ $img->name }}
 @endisset
 </div>
 

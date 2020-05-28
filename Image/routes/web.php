@@ -52,4 +52,17 @@ Route::get('/user-info', 'UserController@get_user_info');
 Route::get('/image-info-edit', 'ImageController@image_edit');
 
 
+Route::post('/delete-image', 'ImageController@image_delete');
+
+Route::get('/user_name_change', function () {
+    return view('user_name_change');
+});
+Route::get('/user_email_change', function () {
+    return view('user_email_change');
+});
+
+
+Route::post('/user_name_change', 'UserController@user_name_change');
+Route::post('/user_email_change', 'UserController@user_email_change');
+
 

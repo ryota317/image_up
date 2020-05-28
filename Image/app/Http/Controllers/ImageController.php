@@ -8,21 +8,20 @@ use App\Image;
 use App\User;
 use Illuminate\Support\Facades\DB;
 class ImageController extends Controller
-{
+  {
 
 
   public function image_get(){
 
+    $image1 = DB::table('images')
+    ->join('users', 'users.id', '=', 'images.contributor')
+    ->select('images.*', 'users.name')
+    ->paginate(10);
 
-
-  $image1 = Image::paginate(10);
-// var_dump($image1[0]->path);exit;
-  return  $image1 ;
-
-
+    // $image1 = Image::paginate(10);
+    // var_dump($image1[0]->path);exit;
+    return  $image1 ;
   }
-
-
 
   private function _validateImageType() {
 
@@ -178,5 +177,33 @@ return $return_view;
 //  return view('/user-info' , ['change_title_result' => 'タイトル変更しました']);
 
 }
+
+public function image_delete(Request $request){
+
+  $image_id = $request->id;
+  // $del_msg = $request->del;
+  $result = \App\Image::where('id', $image_id)->delete();
+  
+if($result === 1){
+//削除成功
+// $user = new App\User();
+// $user_info = get_user_info();
+$test = new UserController();
+  
+$user_info = $test->get_user_info($request);
+
+return  $user_info;
+
+}else{
+//err
+}
+
+}
+
+
+
+
+
+
 
 }
